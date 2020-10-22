@@ -1,0 +1,25 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "The purpose of this homework assignment is to evaluate the approach, code, communication, _following requirements_ and ability of candidates for the Developer position. This is far from anything useful, though hopefully is fun!",
+  "main": "db.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattalexhoward/assignment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattalexhoward/assignment/issues"
+  },
+  "homepage": "https://github.com/mattalexhoward/assignment#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
