@@ -5,6 +5,7 @@
   "main": "db.js",
   "scripts": {
     "start": "nodemon app.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,8 @@
   },
   "homepage": "https://github.com/mattalexhoward/assignment#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mocha": "^8.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
