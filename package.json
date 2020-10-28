@@ -4,7 +4,7 @@
   "description": "The purpose of this homework assignment is to evaluate the approach, code, communication, _following requirements_ and ability of candidates for the Developer position. This is far from anything useful, though hopefully is fun!",
   "main": "db.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
     "test": "mocha"
   },
   "repository": {
