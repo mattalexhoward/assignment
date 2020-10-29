@@ -6,8 +6,14 @@ sequence_mappings = {
     'O' : 'H',
     'W' : 'V'
 }
+status_messages = {
+    [SUCCESS]           : 'Success',
+    [NOT_MATCHING_PAIR] : 'Only encapsulating pairs of PA NY OH WV are allowed',
+    [INVALID_CHAR]      : 'There was an invalid character input. Only PA NY OH and WV are allowed.',
+    [NO_INPUT]          : 'Please enter your input in the text box.'
+}
 
-function sequenceChecker(sequence) {
+function sequenceCheckerProcessor(sequence) {
 
     if( !sequence ) { //if string is empty or null etc
         return NO_INPUT;
@@ -45,4 +51,17 @@ function sequenceChecker(sequence) {
 	return SUCCESS;
 }
 
+function sequenceChecker (sequence) {
+
+
+    status_code = sequenceCheckerProcessor(sequence);
+    // console.log(status_messages[]);
+    return {
+        status_code : [status_code],
+        status_message : status_messages[ status_code ]
+    }
+}
+
 exports.sequenceChecker = sequenceChecker;
+exports.sequenceCheckerProcessor = sequenceCheckerProcessor;
+

@@ -1,24 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Sample Site</title>
-
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <style>
-        body { padding-top:50px; }
+        body {
+            padding-top: 50px;
+        }
     </style>
 </head>
+
 <body>
-    <form action="api/sequence" method="post" >
-        <input type="text" name="userinput" >
-	<input type="submit" value="Submit">
-    </form>
-    <div class="container">
-        <div class="jumbotron">
-            <h1>res.sendFile() Works!</h1>
+    <div id="vue-app">
+        <div style="display: flex; flex-direction: column;">
+            <div style="margin: auto">
+                <form @submit.prevent="submitForm">
+                    <input type="text" name="userinput" v-model="model.userinput">
+                    <input type="submit" value="Submit">
+                </form>
+                <p>{{ response.status }}</p>
+            </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: "#vue-app",
+            data() {
+                return {
+                    response: {
+                        status: ""
+                    },
+                    model: {
+                        userinput: ""
+                    },
+                }
+            },
+            methods: {
+                submitForm() {
 
+                    axios.post('/api/sequence', {
+                        "userinput": this.model.userinput,
+                    }).then(
+                        (resp) => {
+                            return this.response.status = resp.data.status_message;
+                        },
+                        (error) => this.response.status = "A network error has occurred"
+                    )
+                    console.log(this.response);
+                },
+            },
+        });
+    </script>
 </body>
+
 </html>
