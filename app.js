@@ -18,6 +18,9 @@ const { SUCCESS, NOT_MATCHING_PAIR, INVALID_CHAR, NO_INPUT } = require("./consta
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/styles'));
+app.use(express.static(__dirname + '/public'));
+
 app.post('/api/sequence', (req, res) => {
 
 	var result = sequenceChecker(req.body.userinput);

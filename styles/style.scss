@@ -1,0 +1,37 @@
+body {
+    background: black;
+    background-image: url("dna.jpg");
+    background-size: 220vh;
+    zoom: 150%;
+}
+#submitBtnDiv {
+    padding-top: 5px;
+}
+#submitBtn {
+    font-size: 12px;
+    width: 100%
+}
+#seqInput {
+    width: 100%;
+}
+#inputDiv {
+    width: 25vw;
+}
+.makeGreen {
+    color: #00cf03;
+}
+.makeRed {
+    color: red;
+}
+#textInstructions{
+    font-size: 2vw;
+    color: #008cff;
+}
+#bigDiv{
+    padding-bottom: 40px;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: white;
+    border-radius: 2px;
+}

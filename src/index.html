@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Sample Site</title>
+    <title>DNA Sequence Chekcer</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             padding-top: 50px;
@@ -15,12 +16,26 @@
 <body>
     <div id="vue-app">
         <div style="display: flex; flex-direction: column;">
-            <div style="margin: auto">
+            <div style="margin: auto" id="bigDiv">
                 <form @submit.prevent="submitForm">
-                    <input type="text" name="userinput" v-model="model.userinput">
-                    <input type="submit" value="Submit">
+                    <div id="inputDiv">
+                        <label for="seqInput" id="textInstructions">Input Your DNA Sequence</label>
+                        <input type="text" name="userinput" id="seqInput" class="form-control" v-model="model.userinput"
+                            placeholder="Example: PNYA" @focus='clearMessage' @keypress='clearMessage'>
+                    </div>
+
+                    <!-- <p v-bind:class="{ makeGreen: !response.code }" id='responseMessage'> -->
+                    <p v-bind:class="[response.code ? failureMessageColor : successMessageColor]" id='responseMessage'>
+
+                        {{ response.status }}
+
+                    </p>
+                    <div id="submitBtnDiv">
+                        <input type="submit" value="SUBMIT" class="btn btn-primary" id="submitBtn" @click='clearMessage'>
+                    </div>
+
                 </form>
-                <p>{{ response.status }}</p>
+
             </div>
         </div>
     </div>
@@ -32,11 +47,14 @@
             data() {
                 return {
                     response: {
-                        status: ""
+                        status: "",
+                        code: ""
                     },
                     model: {
                         userinput: ""
                     },
+                    successMessageColor: 'makeGreen',
+                    failureMessageColor: 'makeRed'
                 }
             },
             methods: {
@@ -46,11 +64,17 @@
                         "userinput": this.model.userinput,
                     }).then(
                         (resp) => {
-                            return this.response.status = resp.data.status_message;
+                            console.log(this.response.code);
+                            this.response.status = resp.data.status_message;
+                            this.response.code = resp.data.status_code[0];
+                            return;
                         },
                         (error) => this.response.status = "A network error has occurred"
                     )
                     console.log(this.response);
+                },
+                clearMessage() {
+                    this.response.status = "";
                 },
             },
         });
